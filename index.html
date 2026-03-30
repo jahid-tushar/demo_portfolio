@@ -152,43 +152,62 @@
             padding: 140px 0 100px;
         }
 
-        /* Slideshow container — sits at z-index 0, behind everything */
+        /* Slideshow */
         .hero-slideshow {
             position: absolute;
             inset: 0;
             z-index: 0;
         }
 
-        /* Each slide — invisible by default */
         .slide {
             position: absolute;
             inset: 0;
             background-size: cover;
             background-position: center;
             opacity: 0;
-            transition: opacity 1.5s ease-in-out;
+            transition: opacity 1.8s ease-in-out;
         }
 
-        /* Active slide — fully visible at opacity 1; the ::after overlay dims it */
-        .slide.active {
-            opacity: 1;
-        }
+        .slide.active { opacity: 0.65; }
 
-        /* Single dark overlay — z-index 1, above slides, below content.
-           Exactly mirrors the original working implementation. */
-        .hero::after {
-            content: '';
+        /* Gradient overlay — light enough to let slideshow photos show clearly */
+        .hero-overlay {
             position: absolute;
             inset: 0;
-            background: rgba(13, 27, 42, 0.52);
+            background: linear-gradient(
+                160deg,
+                rgba(10,22,40,0.52) 0%,
+                rgba(0,50,90,0.28) 50%,
+                rgba(10,22,40,0.58) 100%
+            );
             z-index: 1;
+        }
+
+        /* Animated dot grid on top */
+        .hero-dots {
+            position: absolute;
+            inset: 0;
+            z-index: 2;
+            background-image: radial-gradient(circle, rgba(0,180,216,0.18) 1px, transparent 1px);
+            background-size: 36px 36px;
             pointer-events: none;
         }
 
-        /* Hero content — z-index 2, above the overlay */
+        /* Hero content sits above all */
         .hero-content {
             position: relative;
-            z-index: 2;
+            z-index: 3;
+        }
+
+        /* Bottom fade */
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 120px;
+            background: linear-gradient(to bottom, transparent, var(--cream));
+            z-index: 4;
+            pointer-events: none;
         }
 
         /* Profile photo */
@@ -1437,6 +1456,8 @@
         <div class="slide" style="background-image: url('GIS and RS_Experience_Collage/Cover_Photos/Cover_Photo (7).jpg');"></div>
         <div class="slide" style="background-image: url('GIS and RS_Experience_Collage/Cover_Photos/Cover_Photo (8).png');"></div>
     </div>
+    <div class="hero-overlay"></div>
+    <div class="hero-dots"></div>
 
     <div class="container hero-content">
         <div class="profile-ring">
@@ -2784,20 +2805,18 @@ const observer = new IntersectionObserver(entries => {
 }, { threshold: 0.08 });
 document.querySelectorAll('.section').forEach(s => observer.observe(s));
 
-// Hero slideshow — mirrors original working implementation exactly
-document.addEventListener('DOMContentLoaded', function () {
+// Hero slideshow
+(function () {
     const slides = document.querySelectorAll('.hero-slideshow .slide');
     if (slides.length <= 1) return;
-
-    let current = 0;
+    let cur = 0;
     slides[0].classList.add('active');
-
     setInterval(() => {
-        slides[current].classList.remove('active');
-        current = (current + 1) % slides.length;
-        slides[current].classList.add('active');
-    }, 6000); // change every 6 seconds
-});
+        slides[cur].classList.remove('active');
+        cur = (cur + 1) % slides.length;
+        slides[cur].classList.add('active');
+    }, 6000);
+})();
 
 // Project modal population
 document.addEventListener('DOMContentLoaded', function () {

@@ -168,17 +168,17 @@
             transition: opacity 1.8s ease-in-out;
         }
 
-        .slide.active { opacity: 0.38; }
+        .slide.active { opacity: 0.65; }
 
-        /* Gradient overlay */
+        /* Gradient overlay — light enough to let slideshow photos show clearly */
         .hero-overlay {
             position: absolute;
             inset: 0;
             background: linear-gradient(
                 160deg,
-                rgba(10,22,40,0.82) 0%,
-                rgba(0,80,120,0.55) 50%,
-                rgba(10,22,40,0.88) 100%
+                rgba(10,22,40,0.52) 0%,
+                rgba(0,50,90,0.28) 50%,
+                rgba(10,22,40,0.58) 100%
             );
             z-index: 1;
         }
@@ -1329,9 +1329,9 @@
 
         .award-main-img {
             width: 100%;
-            height: 420px;
-            object-fit: cover;
-            object-position: center top;
+            height: auto;
+            object-fit: unset;
+            object-position: unset;
             display: block;
             transition: transform 0.6s ease;
         }
@@ -1397,12 +1397,10 @@
         .award-ribbon i { margin-right: 0.3rem; }
 
         @media (max-width: 575px) {
-            .award-main-img { height: 280px; }
             .award-prize-thumb-wrap { width: 120px; bottom: 10px; right: 10px; }
         }
 
         @media (max-width: 767px) {
-            .award-main-img { height: 330px; }
             .award-prize-thumb-wrap { width: 140px; }
         }
 
@@ -1476,7 +1474,7 @@
             <span class="hero-pill"><i class="fas fa-satellite me-1"></i> Remote Sensing</span>
             <span class="hero-pill"><i class="fas fa-drone me-1"></i> UAV Photogrammetry</span>
             <span class="hero-pill"><i class="fas fa-code me-1"></i> Python & ArcPy</span>
-            <span class="hero-pill"><i class="fas fa-globe-asia me-1"></i> 7+ Years Experience</span>
+            <span class="hero-pill"><i class="fas fa-globe-asia me-1"></i> 5+ Years Experience</span>
         </div>
 
         <div class="hero-meta">

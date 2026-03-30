@@ -168,7 +168,7 @@
             transition: opacity 1.8s ease-in-out;
         }
 
-        .slide.active { opacity: 0.22; }
+        .slide.active { opacity: 0.38; }
 
         /* Gradient overlay */
         .hero-overlay {
@@ -1317,11 +1317,95 @@
         /* ═══════════════════════════════════════════════
            RESPONSIVE MISC
         ═══════════════════════════════════════════════ */
-        @media (max-width: 575px) {
-            .section { padding: 60px 0; }
-            .section-title { font-size: 1.75rem; }
-            .timeline-header { flex-direction: column; align-items: flex-start; }
+        /* ═══════════════════════════════════════════════
+           AWARD PHOTO LAYOUT
+        ═══════════════════════════════════════════════ */
+        .award-photo-wrapper {
+            position: relative;
+            width: 100%;
+            overflow: hidden;
+            border-radius: var(--radius-lg) var(--radius-lg) 0 0;
         }
+
+        .award-main-img {
+            width: 100%;
+            height: 420px;
+            object-fit: cover;
+            object-position: center top;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .award-photo-wrapper:hover .award-main-img { transform: scale(1.03); }
+
+        /* Floating prize thumbnail at bottom-right */
+        .award-prize-thumb-wrap {
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            width: 170px;
+            z-index: 2;
+            filter: drop-shadow(0 6px 20px rgba(0,0,0,0.5));
+            transition: transform 0.35s ease, width 0.35s ease;
+        }
+
+        .award-prize-thumb-wrap:hover {
+            transform: scale(1.08);
+            width: 200px;
+        }
+
+        .award-prize-thumb {
+            width: 100%;
+            border-radius: 10px;
+            border: 3px solid var(--gold);
+            display: block;
+            object-fit: cover;
+            aspect-ratio: 4/3;
+        }
+
+        .award-prize-thumb-label {
+            text-align: center;
+            font-size: 0.72rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--gold);
+            background: rgba(10,22,40,0.82);
+            padding: 0.2rem 0;
+            border-radius: 0 0 8px 8px;
+            border: 1px solid rgba(244,164,41,0.3);
+            border-top: none;
+        }
+
+        /* Gold ribbon badge */
+        .award-ribbon {
+            position: absolute;
+            top: 18px;
+            left: 18px;
+            background: linear-gradient(135deg, var(--gold), #e8930a);
+            color: var(--ink);
+            font-size: 0.82rem;
+            font-weight: 800;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            padding: 0.45rem 1rem;
+            border-radius: 50px;
+            box-shadow: 0 4px 16px rgba(244,164,41,0.5);
+            z-index: 2;
+        }
+
+        .award-ribbon i { margin-right: 0.3rem; }
+
+        @media (max-width: 575px) {
+            .award-main-img { height: 280px; }
+            .award-prize-thumb-wrap { width: 120px; bottom: 10px; right: 10px; }
+        }
+
+        @media (max-width: 767px) {
+            .award-main-img { height: 330px; }
+            .award-prize-thumb-wrap { width: 140px; }
+        }
+
     </style>
 </head>
 <body>
@@ -1397,14 +1481,14 @@
 
         <div class="hero-meta">
             <i class="fas fa-phone me-1"></i> +880 1521-108306 &nbsp;&nbsp;
-            <i class="fas fa-envelope me-1"></i> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e58f848d8c818d9190968d8497d1d1dda58288848c89cb868a88">[email&#160;protected]</a><br>
+            <i class="fas fa-envelope me-1"></i> <a href="mailto:jahidtushar1996@gmail.com">jahidtushar1996@gmail.com</a><br>
             <i class="fab fa-linkedin me-1"></i>
             <a href="https://www.linkedin.com/in/jahid-tushar1996" target="_blank">linkedin.com/in/jahid-tushar1996</a>
         </div>
 
         <div class="d-flex flex-wrap gap-3 justify-content-center">
-            <a href="documents/CV_Mohammad_Jahidul_Islam_Tushar.pdf" download class="btn-primary-custom">
-                <i class="fas fa-file-arrow-down"></i> Download CV
+            <a href="Documents/CV_Mohammad_Jahidul_Islam_Tushar.pdf" target="_blank" class="btn-primary-custom">
+                <i class="fas fa-file-arrow-down"></i> View &amp; Download CV
             </a>
             <a href="#about" class="btn-outline-custom">
                 <i class="fas fa-compass"></i> Explore Portfolio
@@ -2311,8 +2395,20 @@
                 <!-- Published Paper -->
                 <div class="pub-card mb-4">
                     <div class="p-4">
-                        <span class="pub-badge journal">Journal Article</span>
-                        <p class="mb-0"><strong>Quader et al. (2022).</strong> Factors of land cover change of Dhaka city through geospatial techniques. <em>Earth Systems and Environment</em>, 5(3), 105–119.</p>
+                        <div class="row align-items-center g-3">
+                            <div class="col-md-8">
+                                <span class="pub-badge journal">Journal Article</span>
+                                <p class="mb-0"><strong>Quader et al. (2022).</strong> Factors of land cover change of Dhaka city through geospatial techniques. <em>Earth Systems and Environment</em>, 5(3), 105–119.</p>
+                            </div>
+                            <div class="col-md-4 d-flex gap-2 flex-wrap">
+                                <button type="button" class="btn-primary-custom" style="font-size:0.85rem; padding:0.5rem 1.1rem;" data-bs-toggle="modal" data-bs-target="#articleModal">
+                                    <i class="fas fa-book-open"></i> View Article
+                                </button>
+                                <a href="Documents/8_2_516.pdf" target="_blank" download class="btn-download" style="font-size:0.85rem; padding:0.5rem 1.1rem;">
+                                    <i class="fas fa-file-pdf"></i> Download PDF
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -2419,16 +2515,21 @@
         <div class="row justify-content-center">
             <div class="col-lg-9 col-md-11">
                 <div class="award-card">
-                    <div class="row g-0">
-                        <div class="col-md-5">
-                            <img src="GIS and RS_Experience_Collage/Introduction to GIS_1st_Prize.jpg"
-                                 alt="Receiving 1st Prize certificate"
-                                 style="width:100%; height:100%; object-fit:cover; min-height:240px;">
-                        </div>
-                        <div class="col-md-7">
+                    <!-- Hero image: Prize-receiving moment (large, prominent) with prize photo floating bottom-right -->
+                    <div class="award-photo-wrapper">
+                        <img src="GIS and RS_Experience_Collage/Introduction to GIS_1st_Prize.jpg"
+                             alt="Receiving the 1st Prize certificate"
+                             class="award-main-img">
+                        <!-- Small prize photo overlaid bottom-right -->
+                        <div class="award-prize-thumb-wrap">
                             <img src="GIS and RS_Experience_Collage/Introduction to GIS_1st_Prize_V2.jfif"
-                                 alt="1st Position Certificate"
-                                 style="width:100%; height:100%; object-fit:cover; min-height:240px;">
+                                 alt="1st Position Certificate, USB drive and plaque"
+                                 class="award-prize-thumb">
+                            <div class="award-prize-thumb-label">The Prizes</div>
+                        </div>
+                        <!-- Gold ribbon badge top-left -->
+                        <div class="award-ribbon">
+                            <i class="fas fa-trophy"></i> 1st Place
                         </div>
                     </div>
                     <div class="award-body">
@@ -2572,7 +2673,7 @@
             <a href="https://api.whatsapp.com/send?phone=8801521108306" target="_blank" class="social-link" aria-label="WhatsApp">
                 <i class="fab fa-whatsapp"></i>
             </a>
-            <a href="/cdn-cgi/l/email-protection#e58f848d8c818d9190968d8497d1d1dda58288848c89cb868a88" class="social-link __cf_email__" aria-label="Email">
+            <a href="mailto:jahidtushar1996@gmail.com" class="social-link" aria-label="Email">
                 <i class="fas fa-envelope"></i>
             </a>
         </div>
@@ -2629,6 +2730,42 @@
                      alt="Poster: Land Use-Land Cover and Change Detection – JNINC 2022"
                      class="img-fluid w-100 rounded-bottom"
                      style="max-height:85vh; object-fit:contain;">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Journal Article PDF Modal -->
+<div class="modal fade" id="articleModal" tabindex="-1" aria-labelledby="articleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div>
+                    <h5 class="modal-title" id="articleModalLabel">Factors of Land Cover Change of Dhaka City Through Geospatial Techniques</h5>
+                    <small style="color:rgba(255,255,255,0.65);">Quader et al. (2022) &nbsp;·&nbsp; Earth Systems and Environment, 5(3), 105–119</small>
+                </div>
+                <button type="button" class="btn-close btn-close-white ms-3" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body p-0">
+                <!-- PDF embedded via iframe — works when file is served over HTTP/GitHub Pages -->
+                <div style="position:relative; padding-top:80%; background:#f0f2f5;">
+                    <iframe
+                        src="Documents/8_2_516.pdf"
+                        style="position:absolute; top:0; left:0; width:100%; height:100%; border:none;"
+                        title="Journal Article PDF"
+                        loading="lazy">
+                        <p style="padding:2rem; color:#444;">
+                            Your browser does not support embedded PDFs.
+                            <a href="Documents/8_2_516.pdf" target="_blank" style="color:#0077b6; font-weight:600;">Click here to open the PDF</a>.
+                        </p>
+                    </iframe>
+                </div>
+            </div>
+            <div class="modal-footer border-0" style="background:var(--ink);">
+                <a href="Documents/8_2_516.pdf" target="_blank" download class="btn-download" style="font-size:0.88rem; padding:0.5rem 1.2rem;">
+                    <i class="fas fa-file-pdf"></i> Download PDF
+                </a>
+                <button type="button" class="btn btn-secondary ms-2" data-bs-dismiss="modal">Close</button>
             </div>
         </div>
     </div>
